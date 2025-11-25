@@ -2,7 +2,8 @@
 
 ## Gameplay Video
 
-<video src="Screen%20Recording%202025-11-23%20at%2012.33.39%20AM.mp4" controls width="800"></video>
+[![Gameplay Video](gameplay_thumbnail.jpg)](gameplay_video.mp4)
+
 
 ## Game Concept
 
