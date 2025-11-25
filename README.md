@@ -1,10 +1,13 @@
 # Space League
+Group Members:
+Noah Bakayou
+Hiệp An Trương
+Teague Sangster
+Jacon Nouri
 
 ## Gameplay Video
 
 [Watch Gameplay Video](https://youtu.be/1wX5wFGBjOw)
-
-
 
 ## Game Concept
 
