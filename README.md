@@ -2,7 +2,8 @@
 
 ## Gameplay Video
 
-[![Gameplay Video](gameplay_thumbnail.jpg)](gameplay_video.mp4)
+[Watch Gameplay Video](https://www.youtube.com/watch?v=VIDEO_ID_HERE)
+
 
 
 ## Game Concept
