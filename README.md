@@ -1,4 +1,4 @@
-# Space League
+#Space League
 
 ## Gameplay Video
 
@@ -12,7 +12,7 @@ This will be a space-themed game. The game mechanics will revolve around ball pl
 
 ## Weapon Loadout System
 
-Our team would like to implement is the ability for the players to change their weapon loadout before entering the battle, similar to what I did in my 2D project. However, I don't think having players shoot and destroy each other while also having to play ball would work very well. Therefore, I would like to propose some alternative weapons:
+Our team would like to implement is the ability for the players to change their weapon loadout before entering the battle, which will offer a wide variety of playstyles and progressions. In the current implementation, the player can choose from the followings: 
 
 - **Grappling hook**: the player have to aim and shoot the hook at the ball. If hit, it will grab and pull the ball toward the player.
 - **EMP missile**: aim and shoot at the enemy player. If hit, immobilized the player for a short amount of time.
@@ -27,3 +27,8 @@ Additionally, we can implement Teague's idea of card system into the game. When 
 - Increase firing rate of weapons
 - Grant a shield in front of goalpost that will stop and deflect ball once
 
+## Name of Group Members and Roles 
+- Hiep An Truong: Movement and weapon system design
+- Noah Bakayou: Networking
+- Teaque Sangster:
+- Jacob Nouri:
