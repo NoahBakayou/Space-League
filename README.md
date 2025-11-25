@@ -2,7 +2,7 @@
 
 ## Gameplay Video
 
-<video src="Screen%20Recording%202025-11-23%20at%2012.33.39%20AM.mov" controls width="800"></video>
+[📹 Watch Gameplay Video](Screen%20Recording%202025-11-23%20at%2012.33.39%20AM.mov)
 
 ## Game Concept
 
