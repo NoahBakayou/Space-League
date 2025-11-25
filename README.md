@@ -2,7 +2,7 @@
 
 ## Gameplay Video
 
-[Watch Gameplay Video](https://www.youtube.com/watch?v=VIDEO_ID_HERE)
+[Watch Gameplay Video](https://youtu.be/1wX5wFGBjOw)
 
 
 
