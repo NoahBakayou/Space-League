@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7997798e7f4f29042baa3397c9c5e9cd, type: 3}
+  m_Name: Default Ship Config
+  m_EditorClassIdentifier: 
+  shipInputThrottle: {fileID: 11400000, guid: ca5f450dd59ede74d9c46334ff16989e, type: 2}
+  shipSpeed: {fileID: 11400000, guid: 545c6dc6edab1434bb45b8e367dd74d5, type: 2}
+  shipTopSpeed: {fileID: 11400000, guid: 150ecd6b2a0cd66439a9c64a1018b92e, type: 2}
+  shipThrottlePower: {fileID: 11400000, guid: 7f6c1ac72c886f04c992f2e8094898fc, type: 2}
+  shipNitroBank: {fileID: 11400000, guid: f0e0e1233d88c2a48b765fd6d64dbffd, type: 2}
+  distanceToCurrentWaypoint: {fileID: 11400000, guid: 176e99375aabb964182727c97bf68e97, type: 2}
+  distanceToCurrentTarget: {fileID: 11400000, guid: b2aa6102fcdef4249bba491b4693f069, type: 2}
+  shipRigidbody: {fileID: 11400000, guid: 10c1018e83f4d524a8d693d150024973, type: 2}
+  shipTransform: {fileID: 11400000, guid: 651930ab210896241bab8ecb1919535d, type: 2}
+  gunOne: {fileID: 11400000, guid: 8e6793c306156b741af215f38073d81d, type: 2}
+  gunTwo: {fileID: 11400000, guid: 55458c82671fb6244bd4bdd8cf6b7aa1, type: 2}
+  currentWaypointTransform: {fileID: 11400000, guid: d827b67e12737ba438e308634a9fe048, type: 2}
+  currentTargetVariable: {fileID: 11400000, guid: 872e94309db593048af0e6669fad4751, type: 2}
+  laserBeamConfig: {fileID: 11400000, guid: 273ddca9a503f594cb978e16fbe95942, type: 2}
+  lasersPool: {fileID: 11400000, guid: 7eda9fa29c01cc0449a45b3f756c414c, type: 2}
+  throttlePower: 5000
+  strafeSpeed: 2000
+  angularSpeed: 500
+  pitchSensitivity: 3
+  yawSensitivity: 4
+  customRollSensitivity: 1
+  autoRollSensitivity: 0.3
+  throttleSensitivity: 0.5
+  strafeSensitivity: 0.5
+  rorationSensitivity: 0.5
+  nitroPower: 1.5
+  nitroSensitivity: 3
+  nitroCapacity: 5
+  pitchYawKp: 1.4
+  pitchYawKi: 0.3
+  pitchYawKd: 0.1
+  rollKp: 1
+  rollKi: 0
+  rollKd: 0.1
