@@ -7,6 +7,7 @@ using Utils.Maths;
 using Utils.Vectors;
 using Utils.ScriptableObjects.Variables;
 using static UnityEngine.InputSystem.InputAction;
+using System.Diagnostics;
 
 namespace Game.Ship.PlayerInput {
     public class ShipMovementInputProcessor : IDisposable {
@@ -34,6 +35,22 @@ namespace Game.Ship.PlayerInput {
         private InputAction rotationAction;
         private InputAction nitroAction;
 
+        // Strafe Dash System
+        private float strafeDashValue = 0f;
+        private float strafeDashVelocity = 0f;
+
+        // Tuning values
+        private const float dashStrength = 6.5f; // How hard the ship kicks sideways
+        private const float dashReturnSpeed = 5f; // How fast it returns to zero
+
+        [SerializeField] private float dashNitroCost = 1.5f; // Nitro cost per A/D tap
+
+        private NitroBooster nitroBooster;
+
+        private float aTapTimer = 0f;
+        private float dTapTimer = 0f;
+        private const float tapThreshold = 0.15f; // 150 ms to classify tap
+
         public ShipMovementInputProcessor(ShipConfig config, FloatVariable shipThrottle, Transform transform, Camera camera) {
             this.config = config;
             this.shipThrottle = shipThrottle;
@@ -52,6 +69,33 @@ namespace Game.Ship.PlayerInput {
 
             nitroAction.performed += SetNitroRequired;
             shipThrottle.OnValueChanged += OnSliderThrottleChanged;
+        }
+
+        public ShipMovementInputProcessor(ShipConfig config, FloatVariable shipThrottle, Transform transform, Camera camera, NitroBooster nitroBooster)
+        {
+            this.config = config;
+            this.shipThrottle = shipThrottle;
+            this.transform = transform;
+            this.mainCamera = camera;
+
+            mouse = Mouse.current;
+            var shipInputActions = new ShipInputActions();
+            strafeAction = shipInputActions.Ship.StrafeAxis;
+            rotationAction = shipInputActions.Ship.RotationAxis;
+            nitroAction = shipInputActions.Ship.Nitro;
+
+            strafeAction.Enable();
+            rotationAction.Enable();
+            nitroAction.Enable();
+
+            nitroAction.performed += SetNitroRequired;
+            shipThrottle.OnValueChanged += OnSliderThrottleChanged;
+            this.nitroBooster = nitroBooster;
+        }
+
+        public void SetNitroBooster(NitroBooster booster)
+        {
+            nitroBooster = booster;
         }
 
         public void Update(float deltaTime) {
@@ -74,12 +118,79 @@ namespace Game.Ship.PlayerInput {
             rotationAction.Dispose();
             nitroAction.Dispose();
         }
-
-        private void UpdateInputAxes(float deltaTime) {
+        // Original A/D handling 
+        /**private void UpdateInputAxes(float deltaTime) {
             float strafe = strafeAction.ReadValue<float>();
             float rotation = rotationAction.ReadValue<float>();
             Strafe = Mathf.MoveTowards(Strafe, strafe, deltaTime * config.strafeSensitivity);
             Rotation = Mathf.MoveTowards(Rotation, rotation, deltaTime * config.rorationSensitivity);
+        } */
+
+        // New A/D handling 
+        private void UpdateInputAxes(float deltaTime)
+        {
+            aTapTimer += deltaTime;
+            dTapTimer += deltaTime;
+
+            if (Keyboard.current.aKey.wasPressedThisFrame)
+            {
+                aTapTimer = 0f; // reset timer
+            }
+
+            if (Keyboard.current.aKey.wasReleasedThisFrame)
+            {
+                if (aTapTimer < tapThreshold && TryConsumeDashNitro())
+                    ApplyDash(-dashStrength);
+            }
+
+            if (Keyboard.current.dKey.wasPressedThisFrame)
+            {
+                dTapTimer = 0f;
+            }
+
+            if (Keyboard.current.dKey.wasReleasedThisFrame)
+            {
+                if (dTapTimer < tapThreshold && TryConsumeDashNitro())
+                    ApplyDash(dashStrength);
+            }
+
+            strafeDashValue = Mathf.SmoothDamp(strafeDashValue, 0f, ref strafeDashVelocity, 1f / dashReturnSpeed, Mathf.Infinity, deltaTime);
+
+            float analogStrafe = strafeAction.ReadValue<float>();
+            float rotation = rotationAction.ReadValue<float>();
+
+            bool userIsHoldingStrafeKey =
+                Keyboard.current.aKey.isPressed ||
+                Keyboard.current.dKey.isPressed;
+
+            if (!userIsHoldingStrafeKey)
+            {
+                // Apply dash impulse (decays over time)
+                Strafe = strafeDashValue;
+            }
+            else
+            {
+                // user is drifting normally
+                Strafe = Mathf.MoveTowards(Strafe, analogStrafe, deltaTime * config.strafeSensitivity);
+            }
+            Rotation = Mathf.MoveTowards(Rotation, rotation, deltaTime * config.rorationSensitivity);
+        }
+
+        private void ApplyDash(float strength)
+        {
+            strafeDashValue = strength;
+            strafeDashVelocity = 0f; 
+        }
+
+        // Helper function to consume nitro for a dash
+        private bool TryConsumeDashNitro()
+        {
+            if (nitroBooster.CurrentNitro < dashNitroCost)
+            {
+                return false; 
+            }
+            nitroBooster.TryConsumeNitro(dashNitroCost);
+            return true; 
         }
 
         private void UpdateKeyboardThrottle(float deltaTime) {
