@@ -1,10 +1,13 @@
 # Space League
+Group Members:
+Noah Bakayou
+Hiệp An Trương
+Teague Sangster
+Jacon Nouri
 
 ## Gameplay Video
 
 [Watch Gameplay Video](https://youtu.be/1wX5wFGBjOw)
-
-
 
 ## Game Concept
 
@@ -26,4 +29,30 @@ Additionally, we can implement Teague's idea of card system into the game. When 
 - Increase maneuverability
 - Increase firing rate of weapons
 - Grant a shield in front of goalpost that will stop and deflect ball once
+
+## Core Features (Build First)
+
+Jacob:
+- Ball physics (gravity / space-gravity tuning)
+- Goal detection + scoring system
+- Sound effects (ball hit, scoring, collisions)
+- Asteroids placed around the arena (static obstacles)
+
+Noah:
+- Networking (sync ships, ball, scoring)
+- Menus for joining games/lobbies
+- Respawning system/game state management
+
+## Enhancements (After Core Works)
+An:
+- Improved movement (inertia tuning, drift, braking thrusters)
+- Weapon management (switching, cooldowns)
+- Blaster mechanics (damage system)
+- Shield & health pickups around the arena
+
+Teague:
+- Weapon Card System
+- New weapons granted after each goal
+- Arena cage/barriers to keep ships & ball inside bounds
+- Boost pickup around the arena
 

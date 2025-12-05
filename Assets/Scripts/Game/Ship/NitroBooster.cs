@@ -13,6 +13,9 @@ namespace Game.Ship {
 
         private readonly float maxCapacity;
 
+        public float CurrentNitro => nitroBank.ModifiedValue();
+        public float MaxNitro => maxCapacity; 
+
         public NitroBooster(FloatVariable throttlePower, ShipConfig config, FloatVariable nitroBank, ShipMovementInputProcessor movementInput) {
             this.throttlePower = throttlePower;
             this.config = config;
@@ -55,6 +58,18 @@ namespace Game.Ship {
         private void RemoveFromBank(float deltaTime) {
             if (nitroBank.ModifiedValue() > 0)
                 nitroBank.SetValue(nitroBank.ModifiedValue() - deltaTime);
+        }
+
+        // Attempt to spend a specified amount of nitro. Returns true if successful
+        public bool TryConsumeNitro(float amount)
+        {
+            float current = nitroBank.ModifiedValue();
+            if (current < amount)
+            {
+                return false; 
+            }
+            nitroBank.SetValue(current - amount);
+            return true; 
         }
     }
 }

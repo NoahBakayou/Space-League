@@ -26,6 +26,7 @@ namespace Game.Ship {
             movement = new ShipMovement(rb, config, movementInput, config.shipSpeed,
                 config.shipTopSpeed, config.shipThrottlePower);
             nitroBooster = new NitroBooster(config.shipThrottlePower, config, config.shipNitroBank, movementInput);
+            movementInput.SetNitroBooster(nitroBooster);
             targetingSystem = new TargetingSystem(cam, t, movementInput, config.currentTargetVariable);
             laserCannon = new LaserCannon((config.gunOne, config.gunTwo),
                 shootingInput, config.laserBeamConfig, config.currentTargetVariable,

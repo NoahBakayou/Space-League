@@ -35,7 +35,7 @@ MonoBehaviour:
   customRollSensitivity: 1
   autoRollSensitivity: 0.3
   throttleSensitivity: 0.5
-  strafeSensitivity: 0.5
+  strafeSensitivity: 2
   rorationSensitivity: 0.5
   nitroPower: 1.5
   nitroSensitivity: 3
